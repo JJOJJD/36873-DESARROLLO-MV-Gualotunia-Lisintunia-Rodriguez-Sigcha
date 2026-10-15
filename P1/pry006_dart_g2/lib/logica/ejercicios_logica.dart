@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class EjerciciosLogica {
   double numero(String texto, {bool permitirNegativos = false}) {
     final valor = double.tryParse(texto.trim().replaceAll(',', '.'));
@@ -108,4 +110,35 @@ class EjerciciosLogica {
     return [...detalle, 'Ahorro del año: ${dinero(acumulado)}'].join('\n');
   }
 }
+
+class JuegoAdivinar {
+  static const intentosMaximos = 10;
+  final Random _azar;
+  late int numeroSecreto = _azar.nextInt(100) + 1;
+  int intentos = 0;
+  bool terminado = false;
+
+  JuegoAdivinar({Random? azar}) : _azar = azar ?? Random();
+
+  int get restantes => intentosMaximos - intentos;
+
+  String probar(String texto) {
+    final n = int.tryParse(texto.trim());
+    if (n == null || n < 1 || n > 100) {
+      throw const FormatException('Ingresa un entero entre 1 y 100.');
+    }
+    if (terminado) return 'El juego terminó. Reinícialo para jugar de nuevo.';
+    intentos++;
+    if (n == numeroSecreto) {
+      terminado = true;
+      return '¡Acertaste en $intentos intentos!';
+    }
+    if (restantes == 0) {
+      terminado = true;
+      return 'Se acabaron los intentos. El número era $numeroSecreto.';
+    }
+    return 'El número a adivinar es ${numeroSecreto > n ? 'mayor' : 'menor'}. Te quedan $restantes intentos.';
+  }
+}
+
 
