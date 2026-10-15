@@ -91,4 +91,21 @@ class EjerciciosLogica {
       'Ganancia por intereses de morosos: ${dinero(ganancia)}',
     ].join('\n');
   }
+
+  String ahorro(String texto) {
+    final depositos = filas(texto).map(numero).toList();
+    if (depositos.length != 12) {
+      throw const FormatException('Ingresa 12 depósitos, uno por mes.');
+    }
+    double acumulado = 0;
+    final detalle = <String>[];
+    for (int mes = 0; mes < 12; mes++) {
+      acumulado += depositos[mes];
+      detalle.add(
+        'Mes ${mes + 1}: depósito ${dinero(depositos[mes])}, ahorrado ${dinero(acumulado)}',
+      );
+    }
+    return [...detalle, 'Ahorro del año: ${dinero(acumulado)}'].join('\n');
+  }
 }
+
