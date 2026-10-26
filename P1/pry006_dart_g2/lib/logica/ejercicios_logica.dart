@@ -76,6 +76,7 @@ class EjerciciosLogica {
       final pago = numero(datos[2]);
       double saldo = anterior + compras - pago;
       if (saldo < 0) saldo = 0;
+      // Criterio: es moroso si su pago no cubre el 15% del saldo antes de recargos.
       final moroso = pago < saldo * 0.15;
       if (moroso) {
         final interes = saldo * 0.12;
@@ -109,6 +110,36 @@ class EjerciciosLogica {
     }
     return [...detalle, 'Ahorro del año: ${dinero(acumulado)}'].join('\n');
   }
+
+  String intervalo(List<String> datos) {
+    final inferior = numero(datos[0], permitirNegativos: true);
+    final superior = numero(datos[1], permitirNegativos: true);
+    if (inferior > superior) {
+      throw const FormatException(
+        'El límite inferior es mayor que el superior. Vuelve a ingresarlos.',
+      );
+    }
+    double suma = 0;
+    int fuera = 0;
+    bool igualALimite = false;
+    for (final fila in filas(datos[2])) {
+      final n = numero(fila, permitirNegativos: true);
+      if (n == 0) break;
+      if (n > inferior && n < superior) {
+        suma += n;
+      } else {
+        fuera++;
+        if (n == inferior || n == superior) igualALimite = true;
+      }
+    }
+    return [
+      'Suma de números dentro del intervalo: $suma',
+      'Números fuera del intervalo: $fuera',
+      igualALimite
+          ? 'Sí se introdujo un número igual a un límite.'
+          : 'No se introdujo ningún número igual a los límites.',
+    ].join('\n');
+  }
 }
 
 class JuegoAdivinar {
@@ -140,5 +171,3 @@ class JuegoAdivinar {
     return 'El número a adivinar es ${numeroSecreto > n ? 'mayor' : 'menor'}. Te quedan $restantes intentos.';
   }
 }
-
-

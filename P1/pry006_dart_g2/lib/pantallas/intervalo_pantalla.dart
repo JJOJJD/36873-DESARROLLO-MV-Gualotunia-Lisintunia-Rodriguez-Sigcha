@@ -1,32 +1,17 @@
 import 'package:flutter/material.dart';
+import '../logica/ejercicios_logica.dart';
+import 'formulario_ejercicio.dart';
 
 class IntervaloPantalla extends StatelessWidget {
   const IntervaloPantalla({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('10. Intervalo de números')),
-    body: Center(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.pending_actions, size: 64, color: Colors.grey),
-            const SizedBox(height: 16),
-            const Text(
-              'Ejercicio 10: Intervalo de números\n(Pendiente de implementación por el equipo)',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18, color: Colors.black54),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Volver al menú'),
-            ),
-          ],
-        ),
-      ),
-    ),
+  Widget build(BuildContext context) => FormularioEjercicio(
+    titulo: '10. Intervalo de números',
+    instrucciones:
+        'Ingresa los límites (el inferior no puede ser mayor que el superior) y luego los números, uno por línea. Se detiene al llegar al 0.',
+    etiquetas: ['Límite inferior', 'Límite superior', 'Números (termina con 0)'],
+    multilinea: true,
+    calcular: (datos) => EjerciciosLogica().intervalo(datos),
   );
 }

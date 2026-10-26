@@ -10,7 +10,7 @@ class AhorroPantalla extends StatelessWidget {
     titulo: '8. Ahorro anual',
     instrucciones:
         'Ingresa el depósito de cada mes, uno por línea (12 líneas).',
-    etiquetas: const ['Depósitos mensuales'],
+    etiquetas: ['Depósitos mensuales'],
     multilinea: true,
     calcular: (datos) => EjerciciosLogica().ahorro(datos[0]),
   );

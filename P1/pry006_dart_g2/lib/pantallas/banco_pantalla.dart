@@ -10,7 +10,7 @@ class BancoPantalla extends StatelessWidget {
     titulo: '7. Banco Bandido de peluche',
     instrucciones:
         'Una línea por cliente: saldo anterior; compras; pago del corte anterior. Moroso: pago menor al 15% del saldo; paga 12% de interés y \$200 de multa.',
-    etiquetas: const ['Clientes (saldo; compras; pago)'],
+    etiquetas: ['Clientes (saldo; compras; pago)'],
     multilinea: true,
     calcular: (datos) => EjerciciosLogica().banco(datos[0]),
   );
