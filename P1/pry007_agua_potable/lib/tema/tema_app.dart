@@ -88,7 +88,7 @@ class TemaApp {
           ),
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: superficie,
         elevation: 2,
         shape: RoundedRectangleBorder(
