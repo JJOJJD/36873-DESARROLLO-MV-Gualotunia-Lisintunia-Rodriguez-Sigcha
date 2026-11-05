@@ -58,6 +58,10 @@ class ProductosPantalla extends StatelessWidget {
                 final esFav = viewModel.esFavorito(producto.id);
 
                 return GestureDetector(
+                  onTap: () {
+                    context.read<CatalogoViewModel>().seleccionarProducto(producto);
+                    Navigator.pushNamed(context, '/detalle', arguments: producto);
+                  },
                   onDoubleTap: () {
                     context.read<CatalogoViewModel>().alternarFavorito(producto.id);
                   },

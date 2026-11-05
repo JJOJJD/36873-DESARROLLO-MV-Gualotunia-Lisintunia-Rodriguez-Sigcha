@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'view_model/catalogo_viewmodel.dart';
 import 'view/pantallas/splash_pantalla.dart';
 import 'view/pantallas/productos_pantalla.dart';
+import 'view/pantallas/detalle_producto_pantalla.dart';
 
 void main() {
   runApp(
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashPantalla(),
         '/productos': (context) => const ProductosPantalla(),
+        '/detalle': (context) => const DetalleProductoPantalla(),
       },
     );
   }
