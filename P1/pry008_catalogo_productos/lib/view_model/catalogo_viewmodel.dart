@@ -50,9 +50,13 @@ class CatalogoViewModel extends ChangeNotifier {
   ];
 
   final Set<int> _favoritosIds = {};
+  ProductoModelo? _productoSeleccionado;
+  int _indiceImagenActual = 0;
 
   List<ProductoModelo> get productos => _productos;
   Set<int> get favoritosIds => _favoritosIds;
+  ProductoModelo? get productoSeleccionado => _productoSeleccionado;
+  int get indiceImagenActual => _indiceImagenActual;
 
   bool esFavorito(int id) {
     return _favoritosIds.contains(id);
@@ -66,5 +70,34 @@ class CatalogoViewModel extends ChangeNotifier {
     }
     notifyListeners();
   }
-}
 
+  void seleccionarProducto(ProductoModelo producto) {
+    _productoSeleccionado = producto;
+    _indiceImagenActual = 0;
+    notifyListeners();
+  }
+
+  void siguienteImagen() {
+    if (_productoSeleccionado != null &&
+        _indiceImagenActual < _productoSeleccionado!.imagenes.length - 1) {
+      _indiceImagenActual++;
+      notifyListeners();
+    }
+  }
+
+  void anteriorImagen() {
+    if (_productoSeleccionado != null && _indiceImagenActual > 0) {
+      _indiceImagenActual--;
+      notifyListeners();
+    }
+  }
+
+  void cambiarImagen(int nuevoIndice) {
+    if (_productoSeleccionado != null &&
+        nuevoIndice >= 0 &&
+        nuevoIndice < _productoSeleccionado!.imagenes.length) {
+      _indiceImagenActual = nuevoIndice;
+      notifyListeners();
+    }
+  }
+}
