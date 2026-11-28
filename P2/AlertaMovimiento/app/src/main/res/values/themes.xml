@@ -1,0 +1,11 @@
+<resources>
+    <!-- Paleta 70-20-10: 70% Base (#F5F6F8), 20% Slate (#1E293B), 10% Acento (#D97706) -->
+    <style name="Theme.AlertaMovimiento" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#1E293B</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#D97706</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:statusBarColor">#1E293B</item>
+        <item name="android:windowBackground">#F5F6F8</item>
+    </style>
+</resources>
